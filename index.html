@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Valentine's Day Mel ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ff4d6d, #ff758f, #ff8fa3);
+    overflow-x: hidden;
+    color: white;
+}
+
+/* Intro Screen */
+.intro {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #ff4d6d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 10;
+    text-align: center;
+}
+
+.intro button {
+    padding: 15px 40px;
+    font-size: 18px;
+    border: none;
+    border-radius: 50px;
+    background: white;
+    color: #ff4d6d;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.intro button:hover {
+    transform: scale(1.1);
+}
+
+/* Main Layout */
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    padding: 50px;
+}
+
+.left {
+    width: 50%;
+    animation: fadeIn 2s ease;
+}
+
+.left h1 {
+    font-size: 48px;
+}
+
+.left p {
+    font-size: 20px;
+    line-height: 1.8;
+}
+
+.right {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.right img {
+    width: 100%;
+    max-width: 350px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    transition: 0.4s;
+}
+
+.right img:hover {
+    transform: scale(1.05);
+}
+
+/* Floating Hearts */
+.heart {
+    position: fixed;
+    color: white;
+    animation: float 6s linear infinite;
+    font-size: 20px;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh); opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+/* Falling Petals */
+.petal {
+    position: fixed;
+    width: 15px;
+    height: 15px;
+    background: pink;
+    border-radius: 50%;
+    animation: fall 8s linear infinite;
+}
+
+@keyframes fall {
+    0% { transform: translateY(-10vh); opacity: 1; }
+    100% { transform: translateY(110vh); opacity: 0; }
+}
+
+.music-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: white;
+    color: #ff4d6d;
+    padding: 12px 25px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media(max-width: 900px) {
+    .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .left, .right {
+        width: 100%;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- Intro Screen -->
+<div class="intro" id="intro">
+    <h1>Mel ❤️</h1>
+    <p>I have something special for you...</p>
+    <button onclick="openSite()">Open My Heart 💖</button>
+</div>
+
+<!-- Main Content -->
+<div class="container">
+
+<div class="left">
+    <h1>Happy Valentine’s Day My Love ❤️</h1>
+    <p>
+        My sweetest Mel,<br><br>
+        From the moment you came into my life, everything changed beautifully. 
+        You are my joy, my peace, and my greatest blessing. 
+        I cherish you more than words can ever explain.
+        <br><br>
+        I love your smile, your voice, your heart, your strength, and your kindness. 
+        Every second with you feels like magic. 
+        You make my world brighter just by existing.
+        <br><br>
+        I promise to always love you, protect you, support you, 
+        and choose you — over and over again.
+        <br><br>
+        You are my today, my tomorrow, and my forever Valentine ❤️
+        <br><br>
+        With all my heart,<br>
+        Yours Always 💕
+    </p>
+</div>
+
+<div class="right">
+    <img src="mel1.jpg" alt="Mel 1">
+    <img src="mel2.jpg" alt="Mel 2">
+</div>
+
+</div>
+
+<!-- Music -->
+<audio id="bgMusic" src="music.mp3" loop></audio>
+<div class="music-btn" onclick="toggleMusic()">Play Music 🎵</div>
+
+<script>
+function openSite() {
+    document.getElementById("intro").style.display = "none";
+    createHearts();
+    createPetals();
+}
+
+function toggleMusic() {
+    let music = document.getElementById("bgMusic");
+    if (music.paused) {
+        music.play();
+        event.target.innerText = "Pause Music 🎶";
+    } else {
+        music.pause();
+        event.target.innerText = "Play Music 🎵";
+    }
+}
+
+function createHearts() {
+    setInterval(() => {
+        let heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = Math.random() * 20 + 15 + "px";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 6000);
+    }, 500);
+}
+
+function createPetals() {
+    setInterval(() => {
+        let petal = document.createElement("div");
+        petal.classList.add("petal");
+        petal.style.left = Math.random() * 100 + "vw";
+        document.body.appendChild(petal);
+        setTimeout(() => petal.remove(), 8000);
+    }, 700);
+}
+</script>
+
+</body>
+</html>
